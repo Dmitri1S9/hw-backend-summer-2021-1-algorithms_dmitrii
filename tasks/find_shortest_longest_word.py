@@ -1,5 +1,8 @@
 __all__ = ("find_shortest_longest_word",)
 
+import string
+from types import new_class
+
 
 def find_shortest_longest_word(text: str) -> tuple[str, str] | tuple[None, None]:
     """Находит самое короткое и самое длинное слово.
@@ -14,4 +17,6 @@ def find_shortest_longest_word(text: str) -> tuple[str, str] | tuple[None, None]
         >> find_shortest_longest_word(" \n\t ")
         (None, None)
     """
-    raise NotImplementedError
+    words = [i.strip().strip(string.punctuation) for i in text.split()]
+    return (None, None) if not words else (min(words, key=len), max(words, key=len))
+
